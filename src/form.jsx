@@ -336,12 +336,24 @@ class ReactForm extends React.Component {
     return submitButton || <input type='submit' className='btn btn-big' value={actionName} />;
   }
 
+  handleRenderSave = () => {
+    const { saveButton = false } = this.props;
+
+    return saveButton || <button onClick={this.saveProgress} className='btn btn-big btn-primary'>Save Progress</button>;
+  }
+
   handleRenderBack = () => {
     const name = this.props.back_name || this.props.backName;
     const backName = name || 'Cancel';
     const { backButton = false } = this.props;
 
     return backButton || <a href={this.props.back_action} className='btn btn-default btn-cancel btn-big'>{backName}</a>;
+  }
+
+  saveProgress() {
+    let $form = ReactDOM.findDOMNode(this.form);
+    $form.action = this.props.save_progress_action;
+    $form.submit();
   }
 
   render() {
@@ -427,6 +439,9 @@ class ReactForm extends React.Component {
               <div className='btn-toolbar'>
                 {!this.props.hide_actions &&
                   this.handleRenderSubmit()
+                }
+                {!this.props.hide_actions && this.props.save_progress_action &&
+                  this.handleRenderSave()
                 }
                 {!this.props.hide_actions && this.props.back_action &&
                   this.handleRenderBack()
