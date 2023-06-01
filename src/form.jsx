@@ -208,10 +208,10 @@ class ReactForm extends React.Component {
         const data = this._collectFormData(this.props.data);
         onSubmit(data);
       } else {
-        const $form = ReactDOM.findDOMNode(this.form);
-        $form.action = this.props.form_action
-        $form.method = this.props.form_method
-        $form.submit();
+        const form = ReactDOM.findDOMNode(this.form);
+        form.action = this.props.form_action
+        form.method = this.props.form_method
+        form.submit();
       }
     }
   }
@@ -351,10 +351,10 @@ class ReactForm extends React.Component {
   }
 
   saveProgress() {
-    let $form = ReactDOM.findDOMNode(this.form);
-    $form.action = this.props.save_progress_action;
-    $form.method = "POST"
-    $form.submit();
+    let form = ReactDOM.findDOMNode(this.form);
+    form.action = this.props.save_progress_action;
+    form.method = "POST"
+    form.submit();
   }
 
   render() {
