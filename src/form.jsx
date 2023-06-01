@@ -211,6 +211,7 @@ class ReactForm extends React.Component {
         const form = ReactDOM.findDOMNode(this.form);
         form.action = this.props.form_action
         form.method = this.props.form_method
+        console.log(this.props)
         form.submit();
       }
     }
@@ -354,6 +355,8 @@ class ReactForm extends React.Component {
     let form = ReactDOM.findDOMNode(this.form);
     form.action = this.props.save_progress_action;
     form.method = "POST"
+    console.log("Props ", this.props)
+    console.log("Form ", form)
     form.submit();
   }
 
