@@ -193,9 +193,7 @@ class ReactForm extends React.Component {
     }
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-
+  handleSubmit() {
     let errors = [];
     if (!this.props.skip_validations) {
       errors = this.validateForm();
@@ -211,6 +209,8 @@ class ReactForm extends React.Component {
         onSubmit(data);
       } else {
         const $form = ReactDOM.findDOMNode(this.form);
+        $form.action = this.props.form_action
+        $form.method = this.props.form_method
         $form.submit();
       }
     }
@@ -333,7 +333,7 @@ class ReactForm extends React.Component {
     const actionName = name || 'Submit';
     const { submitButton = false } = this.props;
 
-    return submitButton || <input type='submit' className='btn btn-big' value={actionName} />;
+    return submitButton || <button onClick={this.handleSubmit} className='btn btn-big'>{actionName}</button>;
   }
 
   handleRenderSave = () => {
@@ -353,6 +353,7 @@ class ReactForm extends React.Component {
   saveProgress() {
     let $form = ReactDOM.findDOMNode(this.form);
     $form.action = this.props.save_progress_action;
+    $form.method = "POST"
     $form.submit();
   }
 
@@ -427,7 +428,7 @@ class ReactForm extends React.Component {
       <div>
           <FormValidator emitter={this.emitter} />
           <div className='react-form-builder-form'>
-            <form encType='multipart/form-data' ref={c => this.form = c} action={this.props.form_action} onSubmit={this.handleSubmit.bind(this)} method={this.props.form_method}>
+            <form encType='multipart/form-data' ref={c => this.form = c}>
               {this.props.authenticity_token &&
                 <div style={formTokenStyle}>
                   <input name='utf8' type='hidden' value='&#x2713;' />
