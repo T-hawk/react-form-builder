@@ -193,7 +193,14 @@ class ReactForm extends React.Component {
     }
   }
 
-  handleSubmit() {
+  saveProgress = () => {
+    const $form = ReactDOM.findDOMNode(this.form);
+    $form.action = this.props.save_progress_action;
+    $form.method = "POST"
+    $form.submit();
+  }
+
+  handleSubmit = () => {
     let errors = [];
     if (!this.props.skip_validations) {
       errors = this.validateForm();
@@ -208,11 +215,10 @@ class ReactForm extends React.Component {
         const data = this._collectFormData(this.props.data);
         onSubmit(data);
       } else {
-        const form = ReactDOM.findDOMNode(this.form);
-        form.action = this.props.form_action
-        form.method = this.props.form_method
-        console.log(this.props)
-        form.submit();
+        const $form = ReactDOM.findDOMNode(this.form);
+        $form.action = this.props.form_action
+        $form.method = this.props.form_method
+        $form.submit();
       }
     }
   }
@@ -334,13 +340,13 @@ class ReactForm extends React.Component {
     const actionName = name || 'Submit';
     const { submitButton = false } = this.props;
 
-    return submitButton || <button onClick={this.handleSubmit} className='btn btn-big'>{actionName}</button>;
+    return submitButton || <button type="button" onClick={this.handleSubmit} className='btn btn-big'>{actionName}</button>;
   }
 
   handleRenderSave = () => {
     const { saveButton = false } = this.props;
 
-    return saveButton || <button onClick={this.saveProgress} className='btn btn-big btn-primary'>Save Progress</button>;
+    return saveButton || <button type="button" onClick={this.saveProgress} className='btn btn-big btn-primary'>Save Progress</button>;
   }
 
   handleRenderBack = () => {
@@ -349,15 +355,6 @@ class ReactForm extends React.Component {
     const { backButton = false } = this.props;
 
     return backButton || <a href={this.props.back_action} className='btn btn-default btn-cancel btn-big'>{backName}</a>;
-  }
-
-  saveProgress() {
-    let form = ReactDOM.findDOMNode(this.form);
-    form.action = this.props.save_progress_action;
-    form.method = "POST"
-    console.log("Props ", this.props)
-    console.log("Form ", form)
-    form.submit();
   }
 
   render() {
