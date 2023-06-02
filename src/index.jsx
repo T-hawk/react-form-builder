@@ -13,7 +13,7 @@ import store from './stores/store';
 import Registry from './stores/registry';
 import AppLocale from './language-provider';
 
-import './scss/application.scss';
+import '../scss/application.scss';
 
 class ReactFormBuilder extends React.Component {
   constructor(props) {
