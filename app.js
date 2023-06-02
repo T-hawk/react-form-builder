@@ -6,7 +6,7 @@ import FormBuilder, { Registry } from './src/index';
 import * as variables from './variables';
 
 // Add our stylesheets for the demo.
-require('./scss/application.scss');
+import './scss/application.scss';
 
 const url = '/api/formdata';
 const saveUrl = '/api/formdata';
@@ -106,7 +106,6 @@ const App = () => (
     locale='en'
     saveAlways={false}
     // toolbarItems={items}
-  
   />);
 
 ReactDOM.render(

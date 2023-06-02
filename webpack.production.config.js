@@ -69,11 +69,7 @@ module.exports = {
             loader: 'css-loader'
           },
           {
-            loader: 'sass-loader', options: {
-              sassOptions: {
-                includePaths: ['./node_modules'],
-              },
-            }
+            loader: 'sass-loader'
           }
         ]
       },
