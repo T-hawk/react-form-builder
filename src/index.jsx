@@ -14,6 +14,7 @@ import Registry from './stores/registry';
 import AppLocale from './language-provider';
 
 import '../scss/application.scss';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class ReactFormBuilder extends React.Component {
   constructor(props) {
