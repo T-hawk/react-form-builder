@@ -12,6 +12,10 @@ module.exports = {
     umdNamedDefine: true,
   },
 
+  optimization: {
+    splitChunks: false
+  },
+
   externals: {
     //don't bundle the 'react' npm package with our bundle.js
     //but get it from a global 'React' variable
@@ -39,6 +43,12 @@ module.exports = {
       "jquery": path.join(__dirname, "./jquery-stub.js")
     }
   },
+
+  plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    })
+  ],
 
   module: {
     rules: [
